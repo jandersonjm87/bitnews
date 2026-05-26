@@ -1,0 +1,47 @@
+# ============================================================
+#  .github/workflows/ci.yml
+#  Pipeline CI/CD — roda automaticamente a cada push.
+#  Verifica a qualidade do código antes de integrar.
+# ============================================================
+
+name: TechBoard CI
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main]
+
+jobs:
+  lint-and-test:
+    name: Lint & Testes
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout do código
+        uses: actions/checkout@v4
+
+      - name: Configura Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Instala dependências
+        run: |
+          pip install -r requirements.txt
+          pip install pytest pytest-asyncio httpx
+
+      - name: Cria .env para testes
+        run: |
+          echo "NEWS_API_KEY=${{ secrets.NEWS_API_KEY }}" > .env
+          echo "DEBUG=false" >> .env
+
+      - name: Roda os testes
+        run: pytest tests/ -v
+
+      - name: Verifica se a API sobe corretamente
+        run: |
+          uvicorn app.main:app --host 0.0.0.0 --port 8000 &
+          sleep 3
+          curl -f http://localhost:8000/api/health

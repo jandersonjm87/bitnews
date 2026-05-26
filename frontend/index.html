@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TechBoard — Painel do Desenvolvedor</title>
+  <link rel="stylesheet" href="/static/css/style.css"/>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns"></script>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-left">
+    <div class="logo">
+      <span class="logo-icon">⚡</span>
+      <span class="logo-text">Tech<span class="logo-accent">Board</span></span>
+    </div>
+    <div class="status-dot" id="statusDot"></div>
+    <span class="status-text" id="statusText">Conectando...</span>
+  </div>
+  <div class="header-right">
+    <span class="header-time" id="headerTime"></span>
+    <span class="header-dev">by Janderson Maciel</span>
+  </div>
+</header>
+
+<nav class="tabs">
+  <button class="tab active" onclick="switchTab('cotacoes',this)">⚡ Cotações</button>
+  <button class="tab" onclick="switchTab('noticias',this)">📰 Notícias Tech</button>
+</nav>
+
+<section id="tab-cotacoes" class="tab-panel active">
+  <div class="section-header">
+    <h2 class="section-title">Mercado em Tempo Real</h2>
+    <span class="update-badge" id="cotacoesUpdate">--</span>
+  </div>
+  <div class="cards-grid" id="cotacoesGrid"></div>
+  <div class="chart-section">
+    <div class="chart-header">
+      <h3 class="chart-title">Histórico de Preços</h3>
+      <div class="chart-controls">
+        <select id="moedaSelect" onchange="atualizarGrafico()">
+          <optgroup label="💵 Moedas Fiat">
+            <option value="usd" data-tipo="fiat">Dólar Americano (USD)</option>
+            <option value="eur" data-tipo="fiat">Euro (EUR)</option>
+            <option value="gbp" data-tipo="fiat">Libra Esterlina (GBP)</option>
+            <option value="jpy" data-tipo="fiat">Iene Japonês (JPY)</option>
+          </optgroup>
+          <optgroup label="⬡ Criptomoedas">
+            <option value="bitcoin" data-tipo="crypto">Bitcoin (BTC)</option>
+            <option value="ethereum" data-tipo="crypto">Ethereum (ETH)</option>
+            <option value="binancecoin" data-tipo="crypto">BNB</option>
+            <option value="solana" data-tipo="crypto">Solana (SOL)</option>
+            <option value="cardano" data-tipo="crypto">Cardano (ADA)</option>
+            <option value="ripple" data-tipo="crypto">XRP</option>
+            <option value="dogecoin" data-tipo="crypto">Dogecoin (DOGE)</option>
+            <option value="polygon-ecosystem-token" data-tipo="crypto">Polygon (MATIC)</option>
+          </optgroup>
+        </select>
+        <div class="periodo-btns">
+          <button class="periodo-btn active" onclick="selecionarPeriodo('1d',this)">1D</button>
+          <button class="periodo-btn" onclick="selecionarPeriodo('7d',this)">7D</button>
+          <button class="periodo-btn" onclick="selecionarPeriodo('30d',this)">30D</button>
+        </div>
+      </div>
+    </div>
+    <div class="chart-container">
+      <canvas id="graficoPreco"></canvas>
+    </div>
+  </div>
+</section>
+
+<section id="tab-noticias" class="tab-panel">
+  <div class="section-header">
+    <h2 class="section-title">Notícias Tech</h2>
+    <span class="update-badge" id="noticiasUpdate">--</span>
+  </div>
+  <div class="categorias" id="categoriasBtns"></div>
+  <div class="noticias-grid" id="noticiasGrid"></div>
+  <div class="paginacao" id="paginacao"></div>
+</section>
+
+<script src="/static/js/cotacoes.js"></script>
+<script src="/static/js/noticias.js"></script>
+<script>
+  function atualizarRelogio() {
+    document.getElementById('headerTime').textContent =
+      new Date().toLocaleString('pt-BR',{dateStyle:'short',timeStyle:'medium'});
+  }
+  setInterval(atualizarRelogio,1000);
+  atualizarRelogio();
+
+  function switchTab(tab,btn) {
+    document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+    document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+    document.getElementById('tab-'+tab).classList.add('active');
+    btn.classList.add('active');
+    if(tab==='noticias'&&!window._noticiasCarregadas){
+      carregarNoticias();
+      window._noticiasCarregadas=true;
+    }
+  }
+
+  function setStatus(online) {
+    document.getElementById('statusDot').className='status-dot '+(online?'online':'offline');
+    document.getElementById('statusText').textContent=online?'Online':'Offline';
+  }
+
+  inicializarCotacoes();
+</script>
+</body>
+</html>
