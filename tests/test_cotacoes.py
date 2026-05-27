@@ -23,7 +23,7 @@ def test_health_check():
     assert response.status_code == 200
     data = response.json()
     assert data["status"] == "online"
-    assert data["app"] == "TechBoard"
+    assert data["app"] == "BitNews"
 
 
 def test_listar_cotacoes_retorna_200():
