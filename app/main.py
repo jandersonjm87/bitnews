@@ -1,7 +1,7 @@
 # ============================================================
 #  app/main.py
 #
-#  Ponto de entrada da aplicação TechBoard.
+#  Ponto de entrada da aplicação BitNews.
 #  Configura o FastAPI, middlewares, routers e serve
 #  o dashboard frontend como arquivo estático.
 # ============================================================
@@ -21,7 +21,7 @@ settings = get_settings()
 app = FastAPI(
     title=f"⚡ {settings.APP_NAME} — Crypto, Câmbio e Tech News",
     description="""
-**TechBoard** — Painel completo para desenvolvedores.
+**BitNews** — Crypto, câmbio e tech news em tempo real.
 
 ## Módulos disponíveis:
 - 📈 **Cotações** — Crypto e moedas fiat em tempo real
