@@ -11,7 +11,7 @@ from functools import lru_cache
 
 class Settings(BaseSettings):
     # Informações da aplicação
-    APP_NAME: str = "TechBoard"
+    APP_NAME: str = "BitNews"
     APP_VERSION: str = "1.0.0"
     DEBUG: bool = False
 

@@ -19,7 +19,7 @@ settings = get_settings()
 
 # ── Instância do FastAPI ──────────────────────────────────
 app = FastAPI(
-    title=f"⚡ {settings.APP_NAME}",
+    title=f"⚡ {settings.APP_NAME} — Crypto, Câmbio e Tech News",
     description="""
 **TechBoard** — Painel completo para desenvolvedores.
 
