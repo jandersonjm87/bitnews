@@ -1,18 +1,11 @@
 # TechBoard — Painel do Desenvolvedor
 
-Painel web completo em tempo real com cotacoes financeiras e noticias tech.
-Desenvolvido com FastAPI, Python e Docker.
+Painel web completo em tempo real com cotacoes financeiras e noticias tech, desenvolvido com FastAPI, Python e Docker.
 
-![Python](https://img.shields.io/badge/Python-3.11-blue?logo=python)
-![FastAPI](https://img.shields.io/badge/FastAPI-0.100-green?logo=fastapi)
-![Docker](https://img.shields.io/badge/Docker-containerizado-blue?logo=docker)
-![CI](https://img.shields.io/badge/CI-GitHub_Actions-black?logo=github-actions)
-![Status](https://img.shields.io/badge/Status-Concluido-brightgreen)
 
 ## Sobre o projeto
 
-O TechBoard e um painel profissional para desenvolvedores que reune em um unico
-lugar informacoes essenciais do mercado e do mundo tech.
+O TechBoard e um painel profissional para desenvolvedores que reune em um unico lugar informacoes essenciais do mercado e do mundo tech.
 
 - Cotacoes de criptomoedas e moedas fiat em tempo real
 - Graficos historicos interativos com periodos de 1D, 7D e 30D
@@ -26,7 +19,7 @@ lugar informacoes essenciais do mercado e do mundo tech.
 - Moedas Fiat: Dolar Americano, Euro, Libra Esterlina, Iene Japones
 - Precos em BRL e USD com variacao percentual 24h
 - Grafico de linha interativo com Chart.js
-- Cache inteligente com fallback para rate limit
+- Cache inteligente com fallback para rate limit HTTP 429
 
 ### Noticias Tech
 - Fontes: TechCrunch, The Verge, Wired, Ars Technica
@@ -38,16 +31,16 @@ lugar informacoes essenciais do mercado e do mundo tech.
 
     techboard/
     app/
-        api/routes/         Endpoints REST
+        api/routes/
             cotacoes.py
             noticias.py
         core/
-            cache.py        Cache em memoria com TTL
-            config.py       Configuracoes centralizadas
-        schemas/            Modelos de dados Pydantic
+            cache.py
+            config.py
+        schemas/
             cotacao.py
             noticia.py
-        services/           Logica de negocio
+        services/
             cotacao_service.py
             noticia_service.py
         main.py
@@ -108,18 +101,17 @@ Chave gratuita em: https://newsapi.org/register
 
 ## Endpoints da API
 
-- GET /api/health             Status da aplicacao
-- GET /api/cotacoes/          Todas as cotacoes
-- GET /api/cotacoes/crypto    Apenas criptomoedas
-- GET /api/cotacoes/fiat      Apenas moedas fiat
-- GET /api/cotacoes/historico/{id}  Historico para graficos
-- GET /api/noticias/          Noticias tech
-- GET /api/noticias/categorias     Categorias disponiveis
+- GET /api/health
+- GET /api/cotacoes/
+- GET /api/cotacoes/crypto
+- GET /api/cotacoes/fiat
+- GET /api/cotacoes/historico/{id}
+- GET /api/noticias/
+- GET /api/noticias/categorias
 
 ## Autor
 
 Janderson Maciel Alves da Silva
-
 LinkedIn: https://linkedin.com/in/janderson-maciel-1791872b1
 GitHub: https://github.com/jandersonjm87
 
