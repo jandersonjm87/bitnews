@@ -1,80 +1,66 @@
-# TechBoard — Painel do Desenvolvedor
+# ⚡ BitNews — Crypto, Câmbio e Tech News
 
-Painel web completo em tempo real com cotacoes financeiras e noticias tech, desenvolvido com FastAPI, Python e Docker.
+![CI](https://github.com/jandersonjm87/techboard/actions/workflows/ci.yml/badge.svg)
+![Python](https://img.shields.io/badge/Python-3.11-blue?logo=python)
+![FastAPI](https://img.shields.io/badge/FastAPI-0.100+-green?logo=fastapi)
+![Docker](https://img.shields.io/badge/Docker-ready-blue?logo=docker)
+![Railway](https://img.shields.io/badge/Deploy-Railway-purple?logo=railway)
 
+Acompanhe cotações de crypto e moedas fiat em tempo real, junto com as principais notícias tech do mundo.
+
+Demo ao vivo: https://techboard-production.up.railway.app
+Documentação da API: https://techboard-production.up.railway.app/docs
 
 ## Sobre o projeto
 
-O TechBoard e um painel profissional para desenvolvedores que reune em um unico lugar informacoes essenciais do mercado e do mundo tech.
+O BitNews é um painel profissional para desenvolvedores que reúne em um único lugar o que importa: mercado financeiro e mundo tech.
 
-- Cotacoes de criptomoedas e moedas fiat em tempo real
-- Graficos historicos interativos com periodos de 1D, 7D e 30D
-- Noticias das maiores fontes tech do mundo
-- Atualizacao automatica a cada 10 segundos
+- Cotações de criptomoedas e moedas fiat em tempo real
+- Gráficos históricos interativos com períodos de 1D, 7D e 30D
+- Notícias das maiores fontes tech do mundo
+- Atualização automática a cada 10 segundos
+- Pipeline CI/CD completo com GitHub Actions + Railway
 
 ## Funcionalidades
 
-### Cotacoes em Tempo Real
+### Cotações em Tempo Real
 - Criptomoedas: Bitcoin, Ethereum, BNB, Solana, Cardano, XRP, Dogecoin, Polygon
-- Moedas Fiat: Dolar Americano, Euro, Libra Esterlina, Iene Japones
-- Precos em BRL e USD com variacao percentual 24h
-- Grafico de linha interativo com Chart.js
+- Moedas Fiat: Dólar Americano, Euro, Libra Esterlina, Iene Japonês
+- Preços em BRL e USD com variação percentual 24h
+- Gráfico de linha interativo com Chart.js
 - Cache inteligente com fallback para rate limit HTTP 429
 
-### Noticias Tech
+### Notícias Tech
 - Fontes: TechCrunch, The Verge, Wired, Ars Technica
-- Categorizacao automatica: Python, DevOps, IA, Seguranca, Web
-- Paginacao e filtro por categoria
-- Atualizacao a cada 30 minutos
-
-## Arquitetura
-
-    techboard/
-    app/
-        api/routes/
-            cotacoes.py
-            noticias.py
-        core/
-            cache.py
-            config.py
-        schemas/
-            cotacao.py
-            noticia.py
-        services/
-            cotacao_service.py
-            noticia_service.py
-        main.py
-    frontend/
-        css/style.css
-        js/cotacoes.js
-        js/noticias.js
-        index.html
-    tests/
-    Dockerfile
-    docker-compose.yml
-    requirements.txt
+- Categorização automática: Python, DevOps, IA, Segurança, Web
+- Paginação e filtro por categoria
+- Atualização a cada 30 minutos
 
 ## Tecnologias
 
-- FastAPI: Framework da API REST
-- httpx: Requisicoes HTTP assincronas
-- Pydantic: Validacao de dados com type hints
-- CoinGecko API: Cotacoes de criptomoedas gratuita
-- ExchangeRate API: Cotacoes de moedas fiat gratuita
-- NewsAPI: Noticias tech em tempo real
-- Chart.js: Graficos interativos
-- Docker: Containerizacao
-- GitHub Actions: Pipeline CI/CD
+- FastAPI — Framework da API REST
+- Python 3.11 — Linguagem principal
+- httpx — Requisições HTTP assíncronas
+- Pydantic — Validação de dados com type hints
+- CoinGecko API — Cotações de criptomoedas
+- ExchangeRate API — Cotações de moedas fiat
+- NewsAPI — Notícias tech em tempo real
+- Chart.js — Gráficos interativos
+- Docker — Containerização
+- GitHub Actions — Pipeline CI/CD
+- Railway — Deploy em produção
 
 ## Como rodar
 
 ### Com Docker
+
     git clone https://github.com/jandersonjm87/techboard.git
     cd techboard
     cp .env.example .env
     docker-compose up --build
 
 ### Sem Docker
+
     git clone https://github.com/jandersonjm87/techboard.git
     cd techboard
     python -m venv venv
@@ -85,7 +71,7 @@ O TechBoard e um painel profissional para desenvolvedores que reune em um unico 
 
 Acesse: http://localhost:8000
 
-## Variaveis de ambiente
+## Variáveis de ambiente
 
 Copie .env.example para .env e preencha:
 
@@ -96,18 +82,19 @@ Chave gratuita em: https://newsapi.org/register
 
 ## Testes
 
-    pip install pytest pytest-asyncio
     pytest tests/ -v
+
+14 testes cobrindo endpoints, cache, categorização e paginação.
 
 ## Endpoints da API
 
-- GET /api/health
-- GET /api/cotacoes/
-- GET /api/cotacoes/crypto
-- GET /api/cotacoes/fiat
-- GET /api/cotacoes/historico/{id}
-- GET /api/noticias/
-- GET /api/noticias/categorias
+- GET /api/health — Status da API
+- GET /api/cotacoes/ — Todas as cotações
+- GET /api/cotacoes/crypto — Apenas criptomoedas
+- GET /api/cotacoes/fiat — Apenas moedas fiat
+- GET /api/cotacoes/historico/{id} — Histórico para gráficos
+- GET /api/noticias/ — Lista de notícias
+- GET /api/noticias/categorias — Categorias disponíveis
 
 ## Autor
 
@@ -115,6 +102,6 @@ Janderson Maciel Alves da Silva
 LinkedIn: https://linkedin.com/in/janderson-maciel-1791872b1
 GitHub: https://github.com/jandersonjm87
 
-## Licenca
+## Licença
 
-Este projeto esta sob a licenca MIT.
+Este projeto está sob a licença MIT.

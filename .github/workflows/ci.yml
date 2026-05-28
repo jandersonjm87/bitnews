@@ -4,7 +4,7 @@
 #  Verifica a qualidade do código antes de integrar.
 # ============================================================
 
-name: TechBoard CI
+name: BitNews CI
 
 on:
   push:

@@ -1,7 +1,7 @@
 services:
   api:
     build: .
-    container_name: techboard-api
+    container_name: bitnews-api
     network_mode: "host"
     env_file:
       - .env
