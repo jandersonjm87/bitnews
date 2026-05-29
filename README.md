@@ -8,8 +8,8 @@
 
 Acompanhe cotações de crypto e moedas fiat em tempo real, junto com as principais notícias tech do mundo.
 
-Demo ao vivo: https://techboard-production.up.railway.app
-Documentação da API: https://techboard-production.up.railway.app/docs
+Demo ao vivo: https://bitnews-production.up.railway.app
+Documentação da API: https://bitnews-production.up.railway.app/docs
 
 ## Sobre o projeto
 
